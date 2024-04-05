@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project 5-AJAX</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #menu {
+        float: left;
+        width: 20%;
+        text-align: center;
+    }
+
+    #menu a {
+        background-color: #e5e5e5;
+        padding: 8px;
+        margin-top: 7px;
+        display: block;
+        width: 20%;
+    }
+
+    .exercise-content {
+        float: left;
+        width: 60%;
+        padding: 0 20px;
+        display: none;
+    }
+
+    .right {
+        background-color: #e5e5e5;
+        float: left;
+        width: 20%;
+        padding: 15px;
+        margin-top: 7px;
+        text-align: center;
+        background-color: lightblue;
+    }
+
+    #projectframe {
+        width: 100%;
+        height: 400px; /* Set the height as per your requirement */
+        display: block;
+    }
+
+    @media only screen and (max-width: 600px) {
+        #menu, .exercise-content, .right {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div style="background-color:#f1f1f1;padding:15px;text-align:center;">
+    <h1>Project 5-AJAX</h1>
+</div>
+
+<div id="menu">
+    <a href="#" onclick="expandAll()">Expand All</a> 
+    <a href="#" onclick="contractAll()">Contract All</a>
+    <a href="#" onclick="toggleExercise('exercise1')">Project 1 - HTML Table</a>
+    <a href="#" onclick="toggleExercise('exercise2')">Project 2 - Tableless Table</a>
+    <a href="#" onclick="toggleExercise('exercise3')">Project 3 - Sorting Arrays</a>
+    <p><a href="#" onclick="displayProject('project1.htm')">Dynamically select project1</a></p>
+    <p><a href="#" onclick="displayProject('project2.htm')">Dynamically select project2</a></p>
+    <p><a href="#" onclick="displayProject('project3.htm')">Dynamically select project3</a></p>
+</div>
+
+<div id="projectframecontainer" class="exercise-content">
+    <iframe id="projectframe"></iframe>
+</div>
+ 
+ 
+<div id="exercise1" class="exercise-content">
+<h2>Project 1 - HTML Table</h2>
+<!DOCTYPE html>
+<html>
+<style>
+Table, td, th {
+border: 1px solid black
+}
+</style>
+<body>
+<table>
+<tr>
+<th>First Name</th>
+<td><input type="text" name="name" id="name"></td>
+</tr>
+<tr>
+<th>Last Name</th>
+<td><input type="text" name="surname" id="surname"></td>
+</tr>
+<tr>
+<th>Age</th>
+<td>
+<select name="age" id="age">
+<option value="">Select</option>
+<option value="0-10">0-10</option>
+<option value="11-20">11-20</option>
+<option value="21-30">21-30</option>
+<option value="31-40">31-40</option>
+<option value="41-50">41-50</option>
+<option value="50+">50+</option>
+</select>
+</td>
+</tr>
+<tr>
+<th>Sex</th>
+<td>
+<input type="radio" name="sex" value="male" id="male"> Male
+<input type="radio" name="sex" value="female" id="female"> Female
+</td>
+</tr>
+<tr>
+<th>Hobby</th>
+<td>
+<input type="checkbox" name="hobby[]" value="programming"
+id="programming"> Programming
+<input type="checkbox" name="hobby[]" value="sports" id="sports">
+Sports
+<input type="checkbox" name="hobby[]" value="cooking" id="cooking">
+Cooking
+<input type="checkbox" name="hobby[]" value="reading" id="reading">
+Reading
+<input type="checkbox" name="hobby[]" value="other" id="other"> Other
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<button onclick="myFunction()">OK</button>
+<button type="button" onclick="cancelFunction()">Cancel</button>
+</td>
+</tr>
+</table>
+<script>
+function  myFunction() {
+let name = document.getElementById("name").value;
+let surname = document.getElementById("surname").value;
+let age = document.getElementById("age").value;
+let sex = document.querySelector('input[name="sex"]:checked');
+let hobbies = document.querySelectorAll('input[name="hobby[]"]:checked');
+let hobbyValues = Array.from(hobbies).map(hobby => hobby.value).join(", ");
+let popup = `Name: ${name}\nSurname: ${surname}\nAge: ${age}\nSex:
+${sex ? sex.value : 'Not specified'}\nHobbies: ${hobbyValues}`;
+alert(popup);
+}
+</script>
+</body>
+</html>
+</div>
+<div id="exercise2" class="exercise-content">
+<h2>Project 2 - Tableless Table</h2>
+<div>
+<div class="table">
+<div class="row1">
+<div class="column">First Name</div>
+<div class="column">
+<input type="text" name="name" id="name2"><br>
+</div>
+</div>
+<div class="row2">
+<div class="column">Last Name</div>
+<div class="column">
+<input type="text" name="surname" id="surname2"><br>
+</div>
+</div>
+<div class="row3">
+<div class="column">Age</div>
+<div class="column">
+<select name="age" id="age2">
+<option value="">Select</option>
+<option value="0-10">0-10</option>
+<option value="11-20">11-20</option>
+<option value="21-30">21-30</option>
+<option value="31-40">31-40</option>
+<option value="41-50">41-50</option>
+<option value="50+">50+</option>
+</select><br><br>
+</div>
+</div>
+<div class="row4">
+<div class="column">Sex</div>
+<div class="column">
+<input type="radio" name="sex2" value="male" id="male"> Male
+<input type="radio" name="sex2" value="female" id="female"> Female
+</div>
+</div>
+<div class="row5">
+<div class="column">Hobby</div>
+<div class="column">
+<input type="checkbox" name="hobby2[]" value="programming" id="programming"> Programming
+<input type="checkbox" name="hobby2[]" value="sports" id="sports"> Sports
+<input type="checkbox" name="hobby2[]" value="cooking" id="cooking"> Cooking
+<input type="checkbox" name="hobby2[]" value="reading" id="reading"> Reading
+<input type="checkbox" name="hobby2[]" value="other" id="other"> Other
+</div>
+</div>
+<div class="row6">
+<div class="column"><button type="button" onclick="myFunction2()">OK</button></div>
+<div class="column"><button type="button" onclick="cancelFunction()">Cancel</button>
+</div>
+</div>
+<script>
+function myFunction2() {
+  let name2 = document.getElementById("name2").value;
+  let surname2 = document.getElementById("surname2").value;
+  let age2 = document.getElementById("age2").value;
+  let sex2 = document.querySelector('input[name="sex2"]:checked');
+  let hobbies2 = document.querySelectorAll('input[name="hobby2[]"]:checked');
+ 
+  let hobbyValues2 = Array.from(hobbies2).map(hobby2 => hobby2.value).join(", ");
+ 
+  let popup2 = `Name: ${name2}\nSurname: ${surname2}\nAge: ${age2}\nSex: ${sex2 ? sex2.value : 'Not specified'}\nHobbies: ${hobbyValues2}`;
+  alert(popup2);
+}
+</script>
+<style>
+        .table {
+            display: table;
+            border-collapse: collapse;
+            width: 400px;
+        }
+        .row1 {
+            display: table-row;
+            background-color: black;
+            color: white;
+        }
+        .row2 {
+            display: table-row;
+            background-color: #a0a5a0b8;
+            color: black;
+        }
+        .row3 {
+            display: table-row;
+            background-color: white;
+            color: black;
+        }
+        .row4 {
+            display: table-row;
+            background-color: #a0a5a0b8;
+            color: black;
+        }
+        .row5 {
+            display: table-row;
+            background-color: white;
+            color: black;
+        }
+        .row6 {
+            display: table-row;
+            background-color: #a0a5a0b8;
+            color: black;
+        }
+        .column {
+            display: table-cell;
+            padding: 5px;
+            border: 5px solid red;
+            border-bottom: 5px solid blue;
+            text-align: center;
+        }
+</style>
+<body>
+</div>
+</div>
+</div>
+ 
+<div id="exercise3" class="exercise-content">
+<h1>Project 3 - Sorting Arrays</h1>
+<!DOCTYPE html>
+<html>
+<title>Sorting Results</title>
+<body>
+<h3>Original Array:</h3>
+<p id="originalArray"></p>
+ 
+<h3>Merge Sort:</h3>
+<p id="mergeSortResult"></p>
+<p id="mergeSortTime"></p>
+ 
+<h3>Selection Sort:</h3>
+<p id="selectionSortResult"></p>
+<p id="selectionSortTime"></p>
+ 
+ 
+<script>
+        var randomArray = [];
+        for (let i = 0, j = 100; i < j; i++) {
+            let randomNumber = Math.round(Math.random() * 100);
+            if (!randomArray.includes(randomNumber)) {
+                randomArray.push(randomNumber);
+            }
+        }
+ 
+        document.getElementById('originalArray').textContent = randomArray.join(', ');
+ 
+        function mergeSort(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
+            const middle = Math.floor(arr.length / 2);
+            const left = arr.slice(0, middle);
+            const right = arr.slice(middle);
+            return merge(mergeSort(left), mergeSort(right));
+        }
+ 
+        function merge(left, right) {
+            let result = [];
+            let leftIndex = 0;
+            let rightIndex = 0;
+            while (leftIndex < left.length && rightIndex < right.length) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    result.push(left[leftIndex]);
+                    leftIndex++;
+                } else {
+                    result.push(right[rightIndex]);
+                    rightIndex++;
+                }
+            }
+            return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+        }
+ 
+        function selectionSort(arr) {
+            for (let i = 0; i < arr.length - 1; i++) {
+                let minIndex = i;
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex !== i) {
+                    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+                }
+            }
+            return arr;
+        }
+ 
+        const mergeSortStartTime = performance.now();
+        let mergeSortedArray = mergeSort([...randomArray]);
+        const mergeSortEndTime = performance.now();
+        document.getElementById('mergeSortResult').textContent = mergeSortedArray.join(', ');
+        document.getElementById('mergeSortTime').textContent = "Merge Sort Time: " + (mergeSortEndTime - mergeSortStartTime) + " ms";
+ 
+        const selectionSortStartTime = performance.now();
+        let selectionSortedArray = selectionSort([...randomArray]);
+        const selectionSortEndTime = performance.now();
+        document.getElementById('selectionSortResult').textContent = selectionSortedArray.join(', ');
+        document.getElementById('selectionSortTime').textContent = "Selection Sort Time: " + (selectionSortEndTime - selectionSortStartTime) + " ms";
+</script>
+</body>
+</html>
+</div>
+ 
+ 
+  
+<script>
+    function expandAll() {
+        var exercises = document.getElementsByClassName('exercise-content');
+        for (var i = 0; i < exercises.length; i++) {
+            exercises[i].style.display = 'block';
+        }
+    }
+ 
+    function contractAll() {
+        var exercises = document.getElementsByClassName('exercise-content');
+        for (var i = 0; i < exercises.length; i++) {
+            exercises[i].style.display = 'none';
+        }
+    }
+ 
+    function toggleExercise(exerciseId) {
+        var exercise = document.getElementById(exerciseId);
+        var isDisplayed = exercise.style.display === 'block';
+        contractAll();
+        exercise.style.display = isDisplayed ? 'none' : 'block';
+    }
+
+  
+</script>
+
+
+<script>
+    function displayProject(projectURL) {
+        var projectFrameContainer = document.getElementById('projectframecontainer');
+        projectFrameContainer.style.display = 'block'; 
+
+        
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById('projectframe').srcdoc = xhr.responseText; 
+            }
+        };
+        xhr.open('GET', projectURL, true);
+        xhr.send();
+    }
+</script>
+
+
+ 
+<div class="right">
+    <p>Responsive Webpage built by Sanghwan Ryu 317374. When clicking the content on the left side named as project, the outcome will be printed in the middle in the  page betweenn the index exercise and description for windows. The page will adjust to the format in which is given by me for the phone in its most optimum format.</p>
+</div>
+
+
+</body>
+</html>

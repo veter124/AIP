@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+  table, th, td {
+    border: 1px solid black;
+ }
+</style>
+
+<body>
+<h2>Project 1 Sanghwan Ryu 317374</h2>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <td><input type="text" name="name" id="name"></td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td><input type="text" name="surname" id="surname"></td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>
+        <select name="age" id="age">
+          <option value="">Select</option>
+          <option value="0-10">0-10</option>
+          <option value="11-20">11-20</option>
+          <option value="21-30">21-30</option>
+          <option value="31-40">31-40</option>
+          <option value="41-50">41-50</option>
+          <option value="50+">50+</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <td>
+        <input type="radio" name="sex" value="male" id="male"> Male
+        <input type="radio" name="sex" value="female" id="female"> Female
+      </td>
+    </tr>
+    <tr>
+      <th>Hobby</th>
+      <td>
+        <input type="checkbox" name="hobby[]" value="programming" id="programming"> Programming
+        <input type="checkbox" name="hobby[]" value="sports" id="sports"> Sports
+        <input type="checkbox" name="hobby[]" value="cooking" id="cooking"> Cooking
+        <input type="checkbox" name="hobby[]" value="reading" id="reading"> Reading
+        <input type="checkbox" name="hobby[]" value="other" id="other"> Other
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button onclick="myFunction()">OK</button>
+        <button type="button" onclick="cancelFunction()">Cancel</button>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    function myFunction() {
+      let name = document.getElementById("name").value;
+      let surname = document.getElementById("surname").value;
+      let age = document.getElementById("age").value;
+      let sex = document.querySelector('input[name="sex"]:checked');
+      let hobbies = document.querySelectorAll('input[name="hobby[]"]:checked');
+
+      let hobbyValues = Array.from(hobbies).map(hobby => hobby.value).join(", ");
+
+      let popup = `Name: ${name}\nSurname: ${surname}\nAge: ${age}\nSex: ${sex ? sex.value : 'Not specified'}\nHobbies: ${hobbyValues}`;
+
+      alert(popup);
+    }
+
+
+  </script>
+</body>
+
+</html>
